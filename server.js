@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 var cors = require('cors')
 
 app.use(cors());
@@ -21,6 +21,6 @@ require("./app/routes/consultorio.routes.js")(app);
 require("./app/routes/doctor.routes.js")(app);
 require("./app/routes/doctorConsultorio.routes.js")(app);
 // set port, listen for requests
-app.listen(4000, () => {
-  console.log("Server is running on port 4000.");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
