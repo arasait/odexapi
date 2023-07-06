@@ -1,9 +1,9 @@
 module.exports = (app) => {
-  const contratos = require("../controllers/especialidades.controller.js");
+  const especialidad = require("../controllers/especialidades.controller.js");
 
   // Retrieve all contratos
-  app.get("/especialidades", contratos.findAll);
+  app.get("/especialidades", especialidad.findAll);
 
   // Retrieve a single Customer with customerId
-  app.get("/especialidades/:nrocontrato", contratos.findOne);
+  app.get("/especialidades/:nrocontrato", especialidad.findOne);
 };
