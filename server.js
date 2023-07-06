@@ -32,6 +32,7 @@ require("./app/routes/config.reservas.routes.js")(app);
 require("./app/routes/horariosDoctorDias.routes.js")(app);
 require("./app/routes/adherentes.routes.js")(app);
 require("./app/routes/listaDentalCard.routes.js")(app);
+require("./app/routes/especialidades.routes.js")(app);
 require("./app/routes/test.routes.js")(app);
 // set port, listen for requests
 app.listen(PORT, () => {
