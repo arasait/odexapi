@@ -5,5 +5,5 @@ module.exports = (app) => {
   app.get("/especialidades", especialidad.findAll);
 
   // Retrieve a single Customer with customerId
-  app.get("/especialidades/:nrocontrato", especialidad.findOne);
+  app.get("/especialidades/:especialidad", especialidad.findOne);
 };

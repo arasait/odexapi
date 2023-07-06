@@ -45,7 +45,7 @@ Especialidad.getAll = result => {
       return;
     }
 
-    console.log("especialidads: ", res);
+    console.log("especialidades: ", res);
     result(null, res);
   });
 };
