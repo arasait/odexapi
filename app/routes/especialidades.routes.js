@@ -1,9 +1,21 @@
-module.exports = (app) => {
-  const especialidad = require("../controllers/especialidades.controller.js");
+module.exports = app => {
+  const especialidades = require("../controllers/especialidades.controller.js");
 
-  // Retrieve all contratos
-  app.get("/especialidades", especialidad.findAll);
+  // Create a new Customer
+  app.post("/especialidades", especialidades.create);
+
+  // Retrieve all planes
+  app.get("/especialidades", especialidades.findAll);
 
   // Retrieve a single Customer with customerId
-  app.get("/especialidades/:especialidad", especialidad.findOne);
+  app.get("/especialidades/:especialidad", especialidades.findOne);
+
+  // Update a Customer with customerId
+  app.put("/especialidades/:especialidad", especialidades.update);
+
+  // Delete a Customer with customerId
+  app.delete("/especialidades/:especialidad", especialidades.delete);
+
+  // Create a new Customer
+  app.delete("/especialidades", especialidades.deleteAll);
 };

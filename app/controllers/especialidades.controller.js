@@ -1,121 +1,111 @@
-const Consultorio = require("../models/especialidades.model.js");
+const Especialidades = require("../models/especialidades.model.js");
 
-// Create and Save a new especialidad
+// Create and Save a new reservacion
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
-      message: "El contenido no puede estar vacío!",
+      message: "El contenido no puede estar vacío!"
     });
   }
 
-  // Create a especialidad
-  const especialidad = new especialidad({
-    name: req.body.nombre,
+  // Create a agendamientos
+  const reservacion = new reservacion({
+    name: req.body.nombre
   });
 
-  // Save consultorio in the database
-  Especialidad.create(especialidad, (err, data) => {
+  // Save agendamientos in the database
+  Especialidades.create(especialidad, (err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || "Se produjo un error al crear especialidad.",
+        message: err.message || "Se produjo un error al crear la especialidad."
       });
     else res.send(data);
   });
 };
 
-// Retrieve all consultorios from the database.
+// Retrieve all agendamientos from the database.
 exports.findAll = (req, res) => {
-  Especialidad.getAll((err, data) => {
+  Especialidades.getAll((err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Se produjo un error al recuperar especialidades.",
+        message: err.message || "Se produjo un error al recuperar las especialidades."
       });
     else res.send(data);
   });
 };
 
-// Find a single consultorio with a consultorioId
+// Find a single especialidad with a especialidadId
 exports.findOne = (req, res) => {
-  Especialidad.findById(req.params.especialidadId, (err, data) => {
+  Especialidades.findById(req.params.especialidad, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `No se encuentra especialidad con el codigo ${req.params.especialidadId}.`,
+          message: `No hay especialidad con ID ${req.params.especialidad}.`
         });
       } else {
         res.status(500).send({
           message:
-            "Error al recuperar consultorio con el codigo " +
-            req.params.especialidadId,
+            "Error al recuperar el agendamiento con el ci " +
+            req.params.especialidad
         });
       }
     } else res.send(data);
   });
 };
 
-// Update a consultorio identified by the consultorioId in the request
+// Update a doctor identified by the doctorId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Content can not be empty!"
     });
   }
 
-  Especialidad.updateById(
-    req.params.especialidadId,
-    new consultorio(req.body),
-    (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `No se encuentra consultorio con el codigo ${req.params.especialidadId}.`,
-          });
-        } else {
-          res.status(500).send({
-            message:
-              "Error al actualizar consultorio con el codigo " +
-              req.params.especialidadId,
-          });
-        }
-      } else res.send(data);
-    }
-  );
-};
-
-// Delete a consultorio with the specified consultorioId in the request
-exports.delete = (req, res) => {
-  Especialidad.remove(req.params.especialidadId, (err, data) => {
+  Especialidades.updateById(req.params.especialidad, new doctor(req.body), (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `No se encuentra especialidad con el codigo ${req.params.especialidadId}.`,
+          message: `No se encuentra la especialidad con el codigo ${req.params.especialidad}.`
         });
       } else {
         res.status(500).send({
           message:
-            "No se pudo borrar especialidad con el codigo " +
-            req.params.especialidadId,
+            "Error al actualizar la especialidad con el codigo " + req.params.especialidad
         });
       }
-    } else res.send({ message: `especialidad fue eliminada con éxito!` });
+    } else res.send(data);
   });
 };
 
-// Delete all consultorios from the database.
+// Delete a doctor with the specified doctorId in the request
+exports.delete = (req, res) => {
+  Especialidades.remove(req.params.doctorId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No se encuentra la especialidad con el codigo ${req.params.especialidad}.`
+        });
+      } else {
+        res.status(500).send({
+          message:
+            "No se pudo borrar la especialidad con el codigo " + req.params.especialidad
+        });
+      }
+    } else res.send({ message: `la especialidad fue eliminada con éxito!` });
+  });
+};
+
+// Delete all doctors from the database.
 exports.deleteAll = (req, res) => {
-  Especialidad.removeAll((err, data) => {
+  Especialidades.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message ||
-          "Se produjo un error al eliminar todos los especialidades.",
+          err.message || "Se produjo un error al eliminar todas las especialidades."
       });
     else
-      res.send({
-        message: `Todos las especialidades fueron eliminadas con éxito!`,
-      });
+      res.send({ message: `Todos los doctors fueron eliminados con éxito!` });
   });
 };
