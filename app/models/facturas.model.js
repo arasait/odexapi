@@ -8,7 +8,7 @@ const Facturas = function (nrocontrato) {
 Facturas.findById = (nrocontrato, result) => {
   sql.query(
     // `SELECT * FROM sp_app_facturas WHERE nrocontrato = ${nrocontrato}`,
-    `SELECT * FROM sp_app_facturas WHERE nrocontrato = ${nrocontrato}`,
+    `CALL sp_app_facturas(${nrocontrato})`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
