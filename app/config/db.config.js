@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "181.40.66.6",
+    HOST: "dentaldb.mysql.database.azure.com",
     USER: "app_odex",
     PASSWORD: "app.odex",
     DB: "sisadinod30"
